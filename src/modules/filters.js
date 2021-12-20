@@ -10,8 +10,35 @@ export const categoryFilter = (goods, value) => {
     })
 }
 
-export const searchFilterPriceRange = (goods, min, max) => {
+//My filter - day-3
+// export const searchFilterPriceRange = (goods, min, max) => {
+//     return goods.filter((goodsItem) => {
+//         return goodsItem.price >= Number(min) && goodsItem.price <= Number(max)
+//     })
+// }
+
+export const priceFilter = (goods, min, max) => {
     return goods.filter((goodsItem) => {
-        return goodsItem.price >= Number(min) && goodsItem.price <= Number(max)
+        if (min === '' && max === '') {
+            return goodsItem
+        } else if (min !== '' && max !== '') {
+            return goodsItem.price > +min && goodsItem.price < +max
+
+        } else if (min !== '' && max === '') {
+            return goodsItem.price > +min
+
+        } else if (min === '' && max !== '') {
+            return goodsItem.price < +max
+        }
+    })
+}
+
+export const hotSaleFilter = (goods, value) => {
+    return goods.filter((goodsItem) => {
+        if(value){
+            return goodsItem.sale === true
+        }else{
+            return goodsItem
+        }
     })
 }
